@@ -6,12 +6,22 @@ public class Expense {
     private String description;
     private double amount;
     private LocalDate date;
+    private int id;
+
 
 
     public Expense(String description, double amount, LocalDate date) {
         this.description = description;
         this.amount = amount;
         this.date = date;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public double getAmount() {
@@ -29,10 +39,8 @@ public class Expense {
 
     @Override
     public String toString() {
-        return "Expense{" +
-                "description='" + description + '\'' +
-                ", amount=" + amount +
-                ", date=" + date +
-                '}';
+        return String.format("# %-3d %-10s %-12s %7.2f", id, date, description, amount);
     }
+
 }
+

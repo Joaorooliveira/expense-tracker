@@ -47,7 +47,7 @@ public class Menu {
 
                     break;
                 case 4:
-
+                    expenseManager.totalDespesas();
                     break;
                 case 5:
 
