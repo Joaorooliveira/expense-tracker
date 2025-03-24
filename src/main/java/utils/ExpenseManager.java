@@ -32,4 +32,9 @@ public class ExpenseManager {
     public void totalDespesas(){
         System.out.println("# Total expenses: $"+totalDespesas);
     }
+
+    public void excluirDespesa(int id){
+        this.despesa.remove(id);
+        System.out.println("Despesa do (ID: "+id+")"+"excluida");
+    }
 }

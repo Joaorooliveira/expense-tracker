@@ -44,7 +44,7 @@ public class Menu {
                     expenseManager.listarDespesas();
                     break;
                 case 3:
-
+                    excluirDespesa();
                     break;
                 case 4:
                     expenseManager.totalDespesas();
@@ -71,5 +71,12 @@ public class Menu {
         Expense despesas = new Expense(descricao, valor,LocalDate.now());
         expenseManager.adicionarDespesa(despesas);
 
+    }
+
+    private int excluirDespesa(){
+        System.out.println("Informe o ID da despesa que deseja excluir:");
+        int id = leitura.nextInt();
+        expenseManager.excluirDespesa(id);
+        return 0;
     }
 }
