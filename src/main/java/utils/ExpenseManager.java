@@ -4,17 +4,16 @@ import models.Expense;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ExpenseManager {
     List<Expense> despesa = new ArrayList<>();
-    private int id=1;
+
     private double totalDespesas =0;
 
     public void adicionarDespesa(Expense despesa) {
-        despesa.setId(id);
         this.despesa.add(despesa);
-        System.out.println("Expense added successfully (ID: "+id+")");
-        id++;
+        System.out.println("Expense added successfully (ID: "+despesa.getId()+")");
         totalDespesas+=despesa.getAmount();
     }
 
@@ -34,7 +33,28 @@ public class ExpenseManager {
     }
 
     public void excluirDespesa(int id){
-        this.despesa.remove(id);
-        System.out.println("Despesa do (ID: "+id+")"+"excluida");
+        boolean removed = despesa.removeIf(expense -> expense.getId() == id);
+
+        if (removed) {
+            System.out.println("Despesa com ID " + id + " excluída.");
+        } else {
+            System.out.println("Nenhuma despesa encontrada com ID " + id);
+        }
     }
+
+    public void buscarDespesasPorMes(int mes) {
+        List<Expense> despesasDoMes = despesa.stream()
+                .filter(expense -> expense.getDate().getMonthValue() == mes)
+                .collect(Collectors.toList());
+
+        if (despesasDoMes.isEmpty()) {
+            System.out.println("Nenhuma despesa encontrada para o mês " + mes + ".");
+        } else {
+            System.out.println(String.format("# %-3s %-10s %-12s %8s", "ID", "Date", "Description", "Amount"));
+            for (Expense expense : despesasDoMes) {
+                System.out.println(expense);
+            }
+        }
+    }
+
 }

@@ -15,6 +15,7 @@ public class Menu {
     private Scanner leitura = new Scanner(System.in);
     private ExpenseManager expenseManager = new ExpenseManager();
     private int opcao=0;
+    private int id=0;
     public void mostrarMenu() {
 
 
@@ -68,15 +69,28 @@ public class Menu {
         double valor = leitura.nextDouble();
         leitura.nextLine(); // Consumir quebra de linha
 
-        Expense despesas = new Expense(descricao, valor,LocalDate.now());
+        id++;
+        Expense despesas = new Expense(descricao, valor,LocalDate.now(),id);
         expenseManager.adicionarDespesa(despesas);
 
     }
 
-    private int excluirDespesa(){
+    private void excluirDespesa(){
         System.out.println("Informe o ID da despesa que deseja excluir:");
         int id = leitura.nextInt();
         expenseManager.excluirDespesa(id);
-        return 0;
+    }
+
+    private void buscarDespesasPorMes() {
+        System.out.print("Digite o número do mês (1-12): ");
+        int mes = leitura.nextInt();
+        leitura.nextLine();
+
+        if (mes < 1 || mes > 12) {
+            System.out.println("Mês inválido! Digite um valor entre 1 e 12.");
+            return;
+        }
+
+        expenseManager.buscarDespesasPorMes(mes);
     }
 }

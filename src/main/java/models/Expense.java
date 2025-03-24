@@ -10,10 +10,11 @@ public class Expense {
 
 
 
-    public Expense(String description, double amount, LocalDate date) {
+    public Expense(String description, double amount, LocalDate date,int id) {
         this.description = description;
         this.amount = amount;
         this.date = date;
+        this.id = id;
     }
 
     public void setId(int id) {
