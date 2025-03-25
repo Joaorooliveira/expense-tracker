@@ -27,7 +27,8 @@ public class Menu {
             System.out.println("3. Excluir despesa");
             System.out.println("4. Resumo das despesas");
             System.out.println("5. Resumo por mês");
-            System.out.println("6. Sair");
+            System.out.println("6. Converter para arquivo JSON");
+            System.out.println("7. Sair");
             System.out.print("Escolha uma opção: ");
             try {
                 opcao = leitura.nextInt(); // Captura a entrada do usuário
@@ -51,15 +52,18 @@ public class Menu {
                     expenseManager.totalDespesas();
                     break;
                 case 5:
-
+                    buscarDespesasPorMes();
                     break;
                 case 6:
+                    expenseManager.conversorParaJson();
+                    break;
+                case 7:
                     break;
                 default:
                     System.out.println("Opcao invalida! Tente Novamente.");
                     break;
             }
-        } while (opcao != 6);
+        } while (opcao != 7);
     }
     private void adicionarDespesa(){
         System.out.println("Digite a descricao da despesa:");
